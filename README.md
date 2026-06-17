@@ -2,7 +2,7 @@
 
 Nexus addon port of the [BlishHUD What Role Am I Playing?](https://github.com/a727891/BlishHud-WhatRoleAmIPlaying) module.
 
-Suggest a random raid build to play next based on a role category you pick — DPS, boon DPS, healer, or full random.
+Suggest a random raid build to play next based on a role category you pick - DPS, boon DPS, healer, or full random.
 
 ## Features
 
@@ -82,10 +82,10 @@ Thank you to **Freesnöw** for continued hosting of the role library and gw2dat 
 
 ## Credits
 
-- **Soeed** — BlishHUD module and Nexus port
-- **Freesnöw** — continued static data and config file hosting (`bhm.blishhud.com`, `assets.gw2dat.com`)
-- **Raidcore** — Nexus addon platform
+- **Soeed** - BlishHUD module and Nexus port
+- **Freesnöw** - continued static data and config file hosting (`bhm.blishhud.com`, `assets.gw2dat.com`)
+- **Raidcore** - Nexus addon platform
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).
