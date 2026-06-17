@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping maintain **What Role Am I Playing?** for Nexus. Community role builds are shared between Blish and Nexus clients via JSON hosted by freesnow (`bhm.blishhud.com`).
+Thanks for helping maintain **What Role Am I Playing?** for Nexus. Community role builds are shared between Blish and Nexus clients via JSON hosted by Freesnöw (`bhm.blishhud.com`).
 
 ## Development setup
 

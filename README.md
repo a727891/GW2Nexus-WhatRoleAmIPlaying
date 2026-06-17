@@ -67,7 +67,7 @@ UI icons load from `https://assets.gw2dat.com/` with `User-Agent: WhatAmIPlaying
 
 To update the build library, edit the static branch in [WhatAmIPlaying-static](https://github.com/a727891/BlishHud-WhatRoleAmIPlaying/tree/bhud-static/Soeed.WhatRoleAmIPlaying) and bump `last_updated`.
 
-Thank you to **freesnow** for continued hosting of the role library and gw2dat icon CDN used by this addon.
+Thank you to **Freesnöw** for continued hosting of the role library and gw2dat icon CDN used by this addon.
 
 ## Manual test checklist
 
@@ -83,7 +83,7 @@ Thank you to **freesnow** for continued hosting of the role library and gw2dat i
 ## Credits
 
 - **Soeed** — BlishHUD module and Nexus port
-- **freesnow** — continued static data and config file hosting (`bhm.blishhud.com`, `assets.gw2dat.com`)
+- **Freesnöw** — continued static data and config file hosting (`bhm.blishhud.com`, `assets.gw2dat.com`)
 - **Raidcore** — Nexus addon platform
 
 ## License

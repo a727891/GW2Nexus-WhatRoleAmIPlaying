@@ -40,7 +40,7 @@ void RenderNexusConfigEntry(AppState& state) {
     ImGui::Separator();
     ImGui::Spacing();
     ImGui::TextUnformatted("Thank you to:");
-    ImGui::BulletText("Freesnow - continued static data and config file hosting");
+    ImGui::BulletText("Freesnöw — continued static data and config file hosting");
 }
 
 }  // namespace OptionsPanel
