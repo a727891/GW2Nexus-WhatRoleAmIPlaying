@@ -8,7 +8,7 @@ namespace wap {
 inline constexpr int32_t kSignature = 0x60018006;
 inline constexpr const char* kDisplayName = "What Role Am I Playing?";
 inline constexpr const char* kLogChannel = "What Role Am I Playing?";
-inline constexpr const char* kAuthor = "Soeed";
+inline constexpr const char* kAuthor = "Soeed.4160";
 inline constexpr const char* kDescription =
     "Suggest a random raid build to play next based on a role you select.";
 inline constexpr const char* kSourceRepoUrl =
@@ -17,5 +17,7 @@ inline constexpr const char* kRolesConfigUrl =
     "https://bhm.blishhud.com/Soeed.WhatRoleAmIPlaying/roles.json";
 inline constexpr const char* kPatchNotesUrl =
     "https://pkgs.blishhud.com/Soeed.WhatRoleAmIPlaying.html";
+inline constexpr const char* kUpdateLink =
+    "https://github.com/a727891/GW2Nexus-WhatRoleAmIPlaying";
 
 }  // namespace wap
