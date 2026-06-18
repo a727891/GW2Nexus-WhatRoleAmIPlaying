@@ -35,7 +35,7 @@ void AppState::ProcessInit() {
         return;
     }
 
-    addonDir = api->Paths_GetAddonDirectory("NexusWhatAmIPlaying");
+    addonDir = api->Paths_GetAddonDirectory("WhatAmIPlaying");
     settings.Load(settingsPath());
 
     roleConfigLoader.SetAddonDir(addonDir);

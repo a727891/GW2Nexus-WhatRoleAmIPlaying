@@ -1,5 +1,6 @@
 #include "core/AppState.h"
 #include "core/Branding.h"
+#include "Version.h"
 #include "core/MumbleUtils.h"
 #include "ui/DatAssetIconService.h"
 #include "ui/MainWindow.h"
@@ -116,10 +117,10 @@ extern "C" __declspec(dllexport) AddonDefinition_t* GetAddonDef() {
     static AddonDefinition_t def{};
     static bool initialized = false;
     if (!initialized) {
-        def.Signature = -2024061501;
+        def.Signature = wap::kSignature;
         def.APIVersion = NEXUS_API_VERSION;
         def.Name = wap::kDisplayName;
-        def.Version = {1, 0, 0, 0};
+        def.Version = {V_MAJOR, V_MINOR, V_BUILD, V_REVISION};
         def.Author = wap::kAuthor;
         def.Description = wap::kDescription;
         def.Load = AddonLoad;

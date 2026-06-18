@@ -16,13 +16,12 @@ See [README.md](README.md) for toolchain, build, and deploy commands.
 | `src/ui/` | Main window, corner icon, gw2dat icons, Nexus config entry |
 | `extern/nexus/` | Nexus addon API headers |
 | `extern/mumble/` | Mumble link header |
-| `docs/` | Blish→Nexus port plan |
 
 ## Static data
 
 Community role builds live in the `bhud-static/Soeed.WhatRoleAmIPlaying` branch (often cloned as `WhatAmIPlaying-static`). Bump `last_updated` when editing `roles.json` so clients re-download.
 
-Nexus caches under `<GW2>/addons/NexusWhatAmIPlaying/whatAmIPlaying/`.
+The addon caches under `<GW2>/addons/WhatAmIPlaying/whatAmIPlaying/`.
 
 ## Code changes
 
