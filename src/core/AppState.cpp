@@ -2,6 +2,7 @@
 
 #include "core/Branding.h"
 #include "ui/DatAssetIconService.h"
+#include "ui/MainWindow.h"
 #include "ui/QuickAccessService.h"
 
 #include <filesystem>
@@ -88,6 +89,7 @@ void AppState::ProcessBackgroundNotices() {
 void AppState::Shutdown() {
     configSyncPending.store(false);
     if (api) {
+        MainWindow::Shutdown(api);
         QuickAccessService::Unregister(api);
     }
     DatAssetIconService::Shutdown();

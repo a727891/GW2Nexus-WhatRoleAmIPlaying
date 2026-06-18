@@ -1,7 +1,10 @@
 #include "ui/MainWindow.h"
 
+#include "core/AppState.h"
 #include "core/Branding.h"
 #include "ui/DatAssetIconService.h"
+
+#include "nexus/Nexus.h"
 
 #include <imgui.h>
 #include <shellapi.h>
@@ -16,13 +19,49 @@ namespace {
 constexpr int kDefaultIconAssetId = 156678;
 constexpr int kQuicknessAssetId = 1012835;
 constexpr int kAlacrityAssetId = 1938787;
+constexpr const char* kWindowId = "What Role Am I Playing?###WAP_MAIN_WINDOW";
 
 bool g_open = false;
+bool g_escapeRegistered = false;
 bool g_hasSelection = false;
 RoleSuggestion g_selectedRole;
 int g_professionIconAssetId = kDefaultIconAssetId;
 int g_eliteSpecIconAssetId = kDefaultIconAssetId;
 int g_boonIconAssetId = 0;
+
+void RegisterCloseOnEscape(AddonAPI_t* api) {
+    if (!api || !api->GUI_RegisterCloseOnEscape || g_escapeRegistered) {
+        return;
+    }
+    api->GUI_RegisterCloseOnEscape(kWindowId, &g_open);
+    g_escapeRegistered = true;
+}
+
+void DeregisterCloseOnEscape(AddonAPI_t* api) {
+    if (!api || !api->GUI_DeregisterCloseOnEscape || !g_escapeRegistered) {
+        return;
+    }
+    api->GUI_DeregisterCloseOnEscape(kWindowId);
+    g_escapeRegistered = false;
+}
+
+void SyncEscapeRegistration(AddonAPI_t* api) {
+    if (g_open) {
+        RegisterCloseOnEscape(api);
+    } else {
+        DeregisterCloseOnEscape(api);
+    }
+}
+
+void HandleEscapeKey() {
+    if (!ImGui::IsWindowFocused(ImGuiFocusedFlags_RootAndChildWindows)) {
+        return;
+    }
+
+    if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_Escape))) {
+        g_open = false;
+    }
+}
 
 void ShowAlert(AppState& state, const char* message) {
     if (state.api && state.api->GUI_SendAlert) {
@@ -137,13 +176,30 @@ void HandleMissingRoles(AppState& state, const char* context) {
 
 }  // namespace
 
-void Open() { g_open = true; }
+void Open() {
+    g_open = true;
+    RegisterCloseOnEscape(AppState::Instance().api);
+}
 
-void Close() { g_open = false; }
+void Close() {
+    g_open = false;
+    DeregisterCloseOnEscape(AppState::Instance().api);
+}
 
-void Toggle() { g_open = !g_open; }
+void Toggle() {
+    if (g_open) {
+        Close();
+        return;
+    }
+    Open();
+}
 
 bool IsOpen() { return g_open; }
+
+void Shutdown(AddonAPI_t* api) {
+    DeregisterCloseOnEscape(api);
+    g_open = false;
+}
 
 void PickRandomRole(AppState& state, RoleType roleType) {
     if (!state.roleConfigService) {
@@ -225,9 +281,12 @@ void Render(AppState& state) {
         return;
     }
 
+    RegisterCloseOnEscape(state.api);
+
     ImGui::SetNextWindowSize(ImVec2(425.0f, 425.0f), ImGuiCond_FirstUseEver);
-    if (!ImGui::Begin(kDisplayName, &g_open, ImGuiWindowFlags_None)) {
+    if (!ImGui::Begin(kWindowId, &g_open, ImGuiWindowFlags_None)) {
         ImGui::End();
+        SyncEscapeRegistration(state.api);
         return;
     }
 
@@ -236,7 +295,9 @@ void Render(AppState& state) {
         if (state.configSyncInProgress.load()) {
             ImGui::TextDisabled("Syncing from static host...");
         }
+        HandleEscapeKey();
         ImGui::End();
+        SyncEscapeRegistration(state.api);
         return;
     }
 
@@ -293,7 +354,9 @@ void Render(AppState& state) {
     ImGui::Spacing();
     RenderRolePanel();
 
+    HandleEscapeKey();
     ImGui::End();
+    SyncEscapeRegistration(state.api);
 }
 
 }  // namespace MainWindow
